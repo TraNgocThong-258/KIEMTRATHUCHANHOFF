@@ -1,0 +1,71 @@
+package TH4;
+
+import java.util.Scanner;
+
+public class Test {
+    public static void main(String[] args) {
+        QuanlykhoGD qlgd = new QuanlykhoGD();
+        GiaoDichDat giaodichdat;
+        GiaoDichNha giaodichnha;
+        Scanner sc = new Scanner(System.in);
+        int menu;
+        do{
+            System.out.println("1. them giao dich");
+            System.out.println("2. in ra man hinh cac danh sach giao dich");
+            System.out.println("3. so luong moi gia dich");
+            System.out.println("4. trung binh tien giao dich dat");
+            System.out.println("5. thoat");
+            System.out.print("Lua chon: ");
+            menu = sc.nextInt();
+            
+            switch(menu){
+                case 1:
+                    sc.nextLine(); 
+                    System.out.println("Nhap loai giao dich");
+                    System.out.println("1. Giao dich dat hoac chon 2. Giao dich nha");
+                    System.out.println("lua chon: ");
+                    int LoaiGD = sc.nextInt(); sc.nextLine();
+                    
+                    sc.nextLine();
+                    System.out.print("Ma giao dich: "); String MaGiaDich = sc.nextLine();
+                    
+                    System.out.print("ngay giao dich"); String NgayGiaoDich = sc.nextLine();
+                    
+                    System.out.print("Don gia: "); double DonGia = sc.nextDouble();
+                    
+                    System.out.print("dien tich: "); double DienTich = sc.nextDouble();
+                    
+                    if(LoaiGD == 1){
+                        System.out.println("Nhap loai dat");
+                        System.out.println("A, B, C"); sc.nextLine();
+                        System.out.print("Nhap loai: ");
+                        String LoaiDat = sc.nextLine();
+                        giaodichdat = new GiaoDichDat(LoaiDat, MaGiaDich, NgayGiaoDich, DonGia, DienTich, DienTich);
+                        qlgd.them(giaodichdat);
+                    }else if(LoaiGD == 2 ){
+                        sc.nextLine(); System.out.println("Nhap loai nha la Cao cap hay thuong");
+                        System.out.println("loai nao: ");
+                        String LoaiNha = sc.nextLine();
+                        System.out.println("dia chi giao dich nha: "); String DiaChi = sc.nextLine();
+                        giaodichnha = new GiaoDichNha(LoaiNha, DiaChi, MaGiaDich, NgayGiaoDich, DonGia, DienTich, DienTich);
+                        qlgd.them(giaodichnha);
+                    }else{
+                        System.out.println("Giao dich khong ton tai");
+                    }
+                    break;
+                case 2:
+                    System.out.println("=== Danh sach cac giao dich ===");
+                    qlgd.in();
+                    System.out.println("===");
+                    break;
+                case 3:
+                    qlgd.soluong();
+                    break;
+                case 4:
+                    qlgd.trungbinhtiendat();
+                    break;
+                default:
+                }
+                }while(menu!=5);
+    }
+}
