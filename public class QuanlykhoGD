@@ -1,0 +1,55 @@
+package TH4;
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class QuanlykhoGD {
+    private ArrayList<GiaoDich> ql;
+    Scanner sc = new Scanner(System.in);
+    GiaoDich giaodich; 
+
+    public QuanlykhoGD(){
+        ql = new ArrayList<>();
+    }
+    
+    public void them(GiaoDich giaodich){
+        ql.add(giaodich);
+    }
+    
+    public void in(){
+        for (GiaoDich giaodich : ql) {
+            System.out.println(giaodich);
+        }
+    }
+    
+   public void soluong() {
+        int soluongnha = 0;
+        int soluongdat = 0;
+        for (GiaoDich giaodich : ql) {
+            if (giaodich instanceof GiaoDichNha) {
+                soluongnha++;
+            } else if (giaodich instanceof GiaoDichDat) {
+                soluongdat++;
+            }
+        }
+        System.out.println("Giao dich nha co so luong la: " + soluongnha);
+        System.out.println("Giao dich dat co so luon la:  " + soluongdat);
+    }
+    
+    public void trungbinhtiendat(){
+        int soluongdat = 0;
+        double tien=0;
+        for (GiaoDich giaodich : ql) {
+            if(giaodich instanceof GiaoDichDat){
+                soluongdat++;
+                tien += giaodich.getDonGia() * giaodich.getDienTich();
+            }
+        }
+        if(soluongdat > 0){
+            double trungbinhtiengddat = tien/soluongdat;
+            System.out.println("Trung binh tien giao dich la" + trungbinhtiengddat);
+        }else{
+            System.out.println("Danh sach giao dich rong");
+        }
+    }
+}
